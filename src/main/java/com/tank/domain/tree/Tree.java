@@ -1,5 +1,7 @@
 package com.tank.domain.tree;
 
+import lombok.Getter;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -123,6 +125,7 @@ public class Tree {
 
   }
 
+  @Getter
   private Container root = new Container();
 
   private Tree() {
