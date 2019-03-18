@@ -71,7 +71,6 @@ public class TreeTest {
     nodeE.setPid("0");
     nodeE.setCount(120);
     nodeE.setDesc("目录x");
-    this.nodes.add(nodeE);
     Node node = this.tree.addNode(nodeE);
     Assert.assertTrue(node.getNodes().size() == 3);
     Assert.assertTrue(node.getNodes().size() == 3);
