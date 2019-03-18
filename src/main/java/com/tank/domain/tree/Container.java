@@ -16,11 +16,6 @@ public class Container extends Item {
   @Getter
   private List<Item> nodes = Lists.newLinkedList();
 
-  @JsonIgnore
-  public boolean isLeaf() {
-    return nodes.size() == 0;
-  }
-
   public void add(final Item node) {
     nodes.add(node);
   }
