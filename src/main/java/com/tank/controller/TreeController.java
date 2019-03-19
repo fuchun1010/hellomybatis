@@ -23,7 +23,7 @@ public class TreeController {
     final List<Item> nodes = body.get("body");
     Container root = tree.toTree(nodes);
     final Map<String, Object> response = Maps.newHashMap();
-    response.put("root", root);
+    response.put("root", root.getNodes());
     return ResponseEntity.ok(response);
   }
 

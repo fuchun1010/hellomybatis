@@ -28,22 +28,21 @@ public class ItemDeserializer extends StdDeserializer<Item> {
     JsonNode node = jsonParser.getCodec().readTree(jsonParser);
     String id = node.get("id").textValue();
     String pid = node.get("pid").textValue();
+    String name = node.get("name").textValue();
     JsonNode tagIdNode = node.get("tagId");
     if (Objects.isNull(tagIdNode)) {
-      String name = node.get("name").textValue();
       Container container = new Container();
       container.setName(name);
       container.setId(id);
       container.setPid(pid);
       return container;
     } else {
-      String desc = node.get("desc").textValue();
       int count = node.get("count").intValue();
       Node tmp = new Node();
       tmp.setId(id);
       tmp.setPid(pid);
       tmp.setCount(count);
-      tmp.setName(desc);
+      tmp.setName(name);
       tmp.setTagId(tagIdNode.textValue());
       return tmp;
     }
