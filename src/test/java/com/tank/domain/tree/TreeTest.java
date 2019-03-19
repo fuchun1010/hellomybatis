@@ -23,7 +23,7 @@ public class TreeTest {
     nodeB.setId("2");
     nodeB.setPid("1");
     nodeB.setCount(50);
-    nodeB.setDesc("标签1");
+    nodeB.setName("标签1");
 
     Container nodeC = new Container();
     nodeC.setId("3");
@@ -34,7 +34,7 @@ public class TreeTest {
     nodeD.setId("4");
     nodeD.setPid("3");
     nodeD.setCount(130);
-    nodeD.setDesc("标签3");
+    nodeD.setName("标签3");
 
     this.nodes.add(nodeA);
     this.nodes.add(nodeB);

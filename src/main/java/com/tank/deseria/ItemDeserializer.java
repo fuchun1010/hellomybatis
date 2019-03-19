@@ -43,7 +43,7 @@ public class ItemDeserializer extends StdDeserializer<Item> {
       tmp.setId(id);
       tmp.setPid(pid);
       tmp.setCount(count);
-      tmp.setDesc(desc);
+      tmp.setName(desc);
       tmp.setTagId(tagIdNode.textValue());
       return tmp;
     }

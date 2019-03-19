@@ -43,7 +43,6 @@ public class Container extends Item {
     return Objects.hash(this.getId());
   }
 
-  @Getter
-  @Setter
-  private String name;
+
+
 }
