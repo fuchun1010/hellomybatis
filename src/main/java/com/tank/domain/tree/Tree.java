@@ -38,6 +38,8 @@ public class Tree {
     return root;
   }
 
+
+
   public Container removeNode(final Node node) {
 
     synchronized (this.root) {

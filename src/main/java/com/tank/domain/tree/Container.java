@@ -20,6 +20,12 @@ public class Container extends Item {
     nodes.add(node);
   }
 
+
+  @JsonIgnore
+  public boolean isLeaf() {
+    return this.nodes.size() == 0;
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
