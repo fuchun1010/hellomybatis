@@ -27,7 +27,7 @@ public class ItemDeserializer extends StdDeserializer<Item> {
   public Item deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
     JsonNode node = jsonParser.getCodec().readTree(jsonParser);
     String id = node.get("id").textValue();
-    String pid = node.get("pid").textValue();
+    String pid =  Objects.isNull(node.get("pid")) ? null : node.get("pid").textValue();
     String name = node.get("name").textValue();
     JsonNode tagIdNode = node.get("tagId");
     if (Objects.isNull(tagIdNode)) {
@@ -37,11 +37,9 @@ public class ItemDeserializer extends StdDeserializer<Item> {
       container.setPid(pid);
       return container;
     } else {
-      int count = node.get("count").intValue();
       Node tmp = new Node();
       tmp.setId(id);
       tmp.setPid(pid);
-      tmp.setCount(count);
       tmp.setName(name);
       tmp.setTagId(tagIdNode.textValue());
       return tmp;

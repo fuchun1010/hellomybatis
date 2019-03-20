@@ -12,6 +12,4 @@ public class Node extends Item {
 
   private String tagId = "";
 
-  private int count = 0;
-
 }

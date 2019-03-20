@@ -22,7 +22,6 @@ public class TreeTest {
     Node nodeB = new Node();
     nodeB.setId("2");
     nodeB.setPid("1");
-    nodeB.setCount(50);
     nodeB.setName("标签1");
 
     Container nodeC = new Container();
@@ -33,7 +32,6 @@ public class TreeTest {
     Node nodeD = new Node();
     nodeD.setId("4");
     nodeD.setPid("3");
-    nodeD.setCount(130);
     nodeD.setName("标签3");
 
     this.nodes.add(nodeA);
