@@ -10,7 +10,7 @@ public abstract class Item {
 
   private String id;
 
-  private String pid;
+  private String pid = null;
 
   private String name;
 
