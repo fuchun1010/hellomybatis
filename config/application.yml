@@ -21,4 +21,4 @@ logging:
         mapper: TRACE
 
 tagService:
-  url: http://localhost:7001/tagLevel/list
+  url: http://localhost:7001/tagLevel/plan/list
