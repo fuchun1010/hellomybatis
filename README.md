@@ -1,6 +1,8 @@
 # hellomybatis
 
 
+> 注意需要先启动tag-service
+
 ```shell
 curl -XPOST -H "Content-Type:application/json" "http://localhost:10004/v1/tree/created" -d '{
 	"body":[
