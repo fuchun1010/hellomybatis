@@ -51,27 +51,29 @@ public class TreeTest {
 
   @Test
   public void removeNode() {
-//    Node nodeC = new Node();
-//    nodeC.setId("3");
-//    nodeC.setPid("2");
-//    nodeC.setCount(120);
-//    nodeC.setDesc("标签2");
-//    Node root = this.tree.removeNode(nodeC);
-//    List<Node> nodes = root.getNodes();
-//    Node node = nodes.get(0);
-//    Assert.assertTrue(node.getNodes().size() == 0);
+    Node nodeC = new Node();
+    nodeC.setId("3");
+    nodeC.setPid("2");
+    nodeC.setName("标签2");
+    this.root = this.tree.removeNode(nodeC);
+    Container container = (Container) this.root.getNodes().get(0);
+    Assert.assertTrue(container.getNodes().size() == 1);
   }
 
   @Test
   public void addNode() {
-//    Node nodeE = new Node();
-//    nodeE.setId("3");
-//    nodeE.setPid("0");
-//    nodeE.setCount(120);
-//    nodeE.setDesc("目录x");
-//    Node node = this.tree.addNode(nodeE);
-//    Assert.assertTrue(node.getNodes().size() == 3);
-//    Assert.assertTrue(node.getNodes().size() == 3);
+    Node nodeE = new Node();
+    nodeE.setId("3");
+    nodeE.setPid(null);
+    nodeE.setName("目录x");
+    Item node = this.tree.addNode(nodeE);
+    if (node instanceof Container) {
+      Container tmp = (Container) node;
+      Assert.assertTrue(tmp.getNodes().size() == 2);
+    } else {
+      Assert.assertTrue(1 == 0);
+    }
+
   }
 
   private Tree tree;
