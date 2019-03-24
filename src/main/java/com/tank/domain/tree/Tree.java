@@ -40,7 +40,7 @@ public class Tree {
   }
 
 
-  public Container removeNode(final Node node) {
+  public Container removeNode(final Item node) {
 
     synchronized (this.root) {
       this.removeNode(this.root, node);
@@ -80,7 +80,7 @@ public class Tree {
     private Tree tree;
   }
 
-  private Item removeNode(Container root, Node node) {
+  private Item removeNode(Container root, Item node) {
 
     synchronized (root) {
       for (Item tmp : root.getNodes()) {
@@ -107,7 +107,7 @@ public class Tree {
 
     synchronized (this.root) {
       for (Item tmp : root.getNodes()) {
-        Preconditions.checkArgument(Objects.isNull(tmp.getId()), "id not allowed null");
+        Preconditions.checkArgument(Objects.nonNull(tmp.getId()), "id not allowed null");
         boolean isEqual = tmp.getId().equals(node.getPid());
         if (isEqual) {
           return tmp;

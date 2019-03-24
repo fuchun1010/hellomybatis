@@ -16,7 +16,7 @@ public class TreeTest {
 
     Container nodeA = new Container();
     nodeA.setId("1");
-    nodeA.setPid("0");
+    nodeA.setPid(null);
     nodeA.setName("目录1");
 
     Node nodeB = new Node();
