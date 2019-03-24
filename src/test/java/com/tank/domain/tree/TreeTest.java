@@ -1,11 +1,12 @@
 package com.tank.domain.tree;
 
 import com.google.common.collect.Lists;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 public class TreeTest {
 
@@ -46,7 +47,7 @@ public class TreeTest {
   @Test
   public void toTree() {
 
-    Assert.assertTrue(this.root.getNodes().size() == 1);
+    assertTrue(this.root.getNodes().size() == 1);
   }
 
   @Test
@@ -57,7 +58,7 @@ public class TreeTest {
     nodeC.setName("标签2");
     this.root = this.tree.removeNode(nodeC);
     Container container = (Container) this.root.getNodes().get(0);
-    Assert.assertTrue(container.getNodes().size() == 1);
+    assertTrue(container.getNodes().size() == 1);
   }
 
   @Test
@@ -69,9 +70,9 @@ public class TreeTest {
     Item node = this.tree.addNode(nodeE);
     if (node instanceof Container) {
       Container tmp = (Container) node;
-      Assert.assertTrue(tmp.getNodes().size() == 2);
+      assertTrue(tmp.getNodes().size() == 2);
     } else {
-      Assert.assertTrue(1 == 0);
+      assertTrue(1 == 0);
     }
 
   }
