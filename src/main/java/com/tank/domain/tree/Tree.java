@@ -40,10 +40,10 @@ public class Tree {
   }
 
 
-  public Container removeNode(final Item node) {
+  public Container removeNode(final String id) {
 
     synchronized (this.root) {
-      this.removeNode(this.root, node);
+      this.removeNode(this.root, id);
     }
 
     return this.root;
@@ -80,16 +80,16 @@ public class Tree {
     private Tree tree;
   }
 
-  private Item removeNode(Container root, Item node) {
+  private Item removeNode(Container root, String id) {
 
     synchronized (root) {
       for (Item tmp : root.getNodes()) {
-        if (tmp.getId().equalsIgnoreCase(node.getId())) {
-          root.getNodes().remove(node);
+        if (tmp.getId().equalsIgnoreCase(id)) {
+          root.getNodes().remove(tmp);
           return root;
         } else {
           if (tmp instanceof Container) {
-            Item rs = this.removeNode((Container) tmp, node);
+            Item rs = this.removeNode((Container) tmp, id);
             if (rs != null) {
               return rs;
             }

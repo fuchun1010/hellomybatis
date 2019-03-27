@@ -7,10 +7,7 @@ import com.tank.domain.tree.Item;
 import com.tank.domain.tree.Tree;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +38,8 @@ public class TreeController {
     return ResponseEntity.ok(tree);
   }
 
-  public ResponseEntity<Map<String, List<Item>>> addNode(final Item item) {
+  @PostMapping(path = "/add/node")
+  public ResponseEntity<Map<String, List<Item>>> addNode(@RequestBody final Item item) {
     Preconditions.checkArgument(Objects.nonNull(item), "item not allowed empty");
     synchronized (this.root) {
       this.root = this.tree.addNode(item);
@@ -51,10 +49,10 @@ public class TreeController {
     return ResponseEntity.ok(tree);
   }
 
-
-  public ResponseEntity removeNode(final Item item) {
+  @DeleteMapping(path = "/delete/{id}/node")
+  public ResponseEntity removeNode(@PathVariable("id") final String id) {
     synchronized (this.root) {
-      this.root = this.tree.removeNode(item);
+      this.root = this.tree.removeNode(id);
     }
     return ResponseEntity.ok().build();
   }

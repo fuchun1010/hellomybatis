@@ -56,7 +56,7 @@ public class TreeTest {
     nodeC.setId("3");
     nodeC.setPid("2");
     nodeC.setName("标签2");
-    this.root = this.tree.removeNode(nodeC);
+    this.root = this.tree.removeNode(nodeC.getId());
     Container container = (Container) this.root.getNodes().get(0);
     assertTrue(container.getNodes().size() == 1);
   }

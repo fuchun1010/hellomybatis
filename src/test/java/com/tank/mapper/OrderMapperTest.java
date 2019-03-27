@@ -16,7 +16,6 @@ public class OrderMapperTest {
 
   @Test
   public void testQueryAll() {
-
     Preconditions.checkArgument(Objects.nonNull(this.orderMapper), "order mapper not allowed empty");
     int num = this.orderMapper.queryAll().size();
     Assert.assertTrue(num > 0);
