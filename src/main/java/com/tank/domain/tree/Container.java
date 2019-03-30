@@ -34,7 +34,7 @@ public class Container extends Item {
     if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
-    Node node = (Node) obj;
+    Item node = (Item) obj;
     return Objects.equals(this.getId(), node.getId());
   }
 

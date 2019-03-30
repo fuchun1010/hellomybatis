@@ -84,6 +84,7 @@ public class Tree {
 
     synchronized (root) {
       for (Item tmp : root.getNodes()) {
+        System.out.println("name===>"+tmp.getName());
         if (tmp.getId().equalsIgnoreCase(id)) {
           root.getNodes().remove(tmp);
           return root;
@@ -100,7 +101,7 @@ public class Tree {
       }
     }
 
-    return root;
+    return null;
   }
 
   private Item search(final Container root, Item node) {

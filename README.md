@@ -22,8 +22,5 @@ curl -XPOST -H "Content-Type:application/json" "http://localhost:10004/v1/tree/c
 ```
 
 ```shell
-curl -XGET -H "Content-Type:application/json" "http://localhost:10004/v1/tree"
-```
-
-```shell
+curl -XGET -H "Content-Type:application/json" "http://localhost:10004/v1/tree" | jq .
 ```
