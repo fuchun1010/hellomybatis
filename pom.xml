@@ -21,7 +21,7 @@
         <docker.images.prefix>tank</docker.images.prefix>
         <maven.test.skip>true</maven.test.skip>
         <docker.registry.server>docker.registry.server:5000</docker.registry.server>
-        <jedis.version>3.0.1</jedis.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <dependencies>
@@ -60,6 +60,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
         </dependency>
 
         <dependency>
