@@ -29,6 +29,7 @@ public class RedisConf {
     return redisTemplate;
   }
 
+
   private RedisStandaloneConfiguration initStandaloneRedisConfig() {
     final RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
     String url = env.getProperty("spring.redis.url");
