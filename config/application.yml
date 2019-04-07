@@ -1,18 +1,6 @@
 server:
   port: 10004
 
-rdb:
-  mysql:
-    url:  jdbc:mysql://localhost:3306/order
-    driver: com.mysql.cj.jdbc.Driver
-    username: test
-    password: 123
-    druid:
-      maxWait: 30000
-      query-timeout: 10
-      validation-query: SELECT 1
-      use-global-data-source-stat: true
-
 logging:
   level:
     root: INFO
@@ -20,5 +8,3 @@ logging:
       mybatis:
         mapper: TRACE
 
-tagService:
-  url: http://localhost:7001/tagLevel/flat/list

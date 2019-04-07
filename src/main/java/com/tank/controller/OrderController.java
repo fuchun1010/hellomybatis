@@ -1,15 +1,12 @@
 package com.tank.controller;
 
 import com.google.common.collect.Maps;
-import com.tank.domain.Order;
-import com.tank.mapper.OrderMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,14 +16,12 @@ import java.util.Map;
 @RequestMapping("/v1/order")
 public class OrderController {
 
-  @GetMapping(path = "/list")
-  public ResponseEntity<Map<String, List<Order>>> list() {
-    final List<Order> orders = this.orderMapper.queryAll();
-    final Map<String, List<Order>> response = Maps.newHashMap();
-    response.put("orders", orders);
-    return ResponseEntity.ok(response);
+  @GetMapping("/hello")
+  public ResponseEntity<Map<String, String>> hello() {
+    val map = Maps.<String, String>newHashMap();
+    map.put("hello", "hello,redis");
+    return ResponseEntity.ok(map);
   }
 
-  @Autowired
-  private OrderMapper orderMapper;
+
 }
