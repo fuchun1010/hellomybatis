@@ -42,7 +42,7 @@ public class Order {
   }
 
 
-  private String orderId;
+  private long orderId;
 
   private String storeId;
 

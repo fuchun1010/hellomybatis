@@ -11,7 +11,8 @@ import javax.annotation.Nonnull;
  */
 public interface IOrder {
 
-
   Result saveOrder(@Nonnull final Order order);
+
+  Long retrieveOrderId();
 
 }

@@ -3,6 +3,6 @@ server:
 
 spring:
   redis:
-    url: 127.0.0.1
+    url: localhost
     db: 1
     port: 6379

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * @author fuchun
@@ -16,19 +15,8 @@ public class RedisConf {
 
   @Bean
   public JedisConnectionFactory initJedisConnectionFactory() {
-    final RedisStandaloneConfiguration conf = this.initStandaloneRedisConfig();
-    final JedisConnectionFactory factory = new JedisConnectionFactory(conf);
-    return factory;
+    return new JedisConnectionFactory(this.initStandaloneRedisConfig());
   }
-
-
-  @Bean(name = "redisTemplate")
-  public RedisTemplate<String, String> initRedisTemplate(@Autowired JedisConnectionFactory jedisConnectionFactory) {
-    final RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
-    redisTemplate.setConnectionFactory(jedisConnectionFactory);
-    return redisTemplate;
-  }
-
 
   private RedisStandaloneConfiguration initStandaloneRedisConfig() {
     final RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
