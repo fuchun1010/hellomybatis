@@ -3,11 +3,13 @@ package com.tank.controller;
 import com.google.common.collect.Maps;
 import com.tank.constant.Result;
 import com.tank.domain.Order;
+import com.tank.helper.DateHelper;
 import com.tank.service.IOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +48,19 @@ public class OrderController {
 
   }
 
+  @GetMapping("/date")
+  public ResponseEntity<Map<String, String>> currentDate() {
+    final String date = this.dateHelper.currentDefaultDate();
+    final Map<String, String> body = Maps.newHashMap();
+    body.put("date", date);
+    return ResponseEntity.ok(body);
+  }
+
 
   @Autowired
   private IOrder orderService;
+
+  @Autowired
+  private DateHelper dateHelper;
 
 }
