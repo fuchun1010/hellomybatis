@@ -36,7 +36,7 @@ public class OrderController {
     Result result = this.orderService.saveOrder(order);
 
     if (result == Result.SUCCESS) {
-      response.put("orderId", "" + orderId);
+      response.put("orderId", String.valueOf(orderId));
       return ResponseEntity.ok(response);
     } else {
       response.put("msg", "some error in server");

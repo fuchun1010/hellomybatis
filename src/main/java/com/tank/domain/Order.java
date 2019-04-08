@@ -48,5 +48,7 @@ public class Order {
 
   private String distributeCode;
 
+  private boolean isConfirmed = false;
+
   private List<Item> items = Lists.newLinkedList();
 }
