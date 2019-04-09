@@ -36,15 +36,19 @@ public class IdGeneratorTest {
 
   @Test
   public void generateOrderId3() {
-//    String value = this.idGenerator.generateOrderId(seq3);
-//    System.out.println("order is:" + value);
-//    Assert.assertTrue(value.length() == 15);
+    String storeCode = "k20211";
+    String value = this.idGenerator.generateOrderId(storeCode);
+    System.out.println("order is:" + value);
+    Assert.assertTrue(value.length() == 15);
   }
+
+
 
   @Test
   public void generateOrderId4() {
-//    String value = this.idGenerator.generateOrderId(seq4);
-//    Assert.assertTrue(value.length() == 15);
+    char k = 'k';
+    int c = (int)k;
+    System.out.println(c);
   }
 
   @Test
