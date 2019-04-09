@@ -12,9 +12,9 @@ import java.io.FileNotFoundException;
 @Component
 public class FileHelper {
 
-  public File loadFile(@Nonnull final String filePath) throws FileNotFoundException {
+  public File loadFile(@Nonnull final String fileName) throws FileNotFoundException {
     String path = System.getProperty("user.dir");
-    File file = new File(path + File.separator + "config" + File.separator + filePath);
+    File file = new File(path + File.separator + "config" + File.separator + fileName);
     if (!file.exists()) {
       throw new FileNotFoundException(file.getAbsolutePath() + " not exists");
     }
