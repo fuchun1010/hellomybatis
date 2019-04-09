@@ -1,5 +1,6 @@
 package com.tank.helper;
 
+import lombok.val;
 import org.javatuples.Triplet;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,45 +15,54 @@ public class IdGeneratorTest {
 
   @Test
   public void generateOrderId1() {
-    String value = this.idGenerator.generateOrderId(seq1);
-    Assert.assertTrue("j8569*o3gt00001".equalsIgnoreCase(value));
+    String storeCode = "790045";
+    String value = this.idGenerator.generateOrderId(storeCode);
+    //Assert.assertTrue("j8569*o3gt00001".equalsIgnoreCase(value));
+    System.out.println("order is:" + value);
+    Triplet<Integer, Integer, Integer> orderStructure = this.idGenerator.toRawOrderId(value);
+    System.out.println("date=" + orderStructure.getValue0());
+    System.out.println("store=" + orderStructure.getValue1());
+    System.out.println("orderId=" + orderStructure.getValue2());
     Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId2() {
-    String value = this.idGenerator.generateOrderId(seq2);
+    String storeCode = "0084";
+    String value = this.idGenerator.generateOrderId(storeCode);
+    System.out.println("order is:" + value);
     Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId3() {
-    String value = this.idGenerator.generateOrderId(seq3);
-    Assert.assertTrue(value.length() == 15);
+//    String value = this.idGenerator.generateOrderId(seq3);
+//    System.out.println("order is:" + value);
+//    Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId4() {
-    String value = this.idGenerator.generateOrderId(seq4);
-    Assert.assertTrue(value.length() == 15);
+//    String value = this.idGenerator.generateOrderId(seq4);
+//    Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId5() {
-    String value = this.idGenerator.generateOrderId(seq5);
-    Assert.assertTrue(value.length() == 15);
+//    String value = this.idGenerator.generateOrderId(seq5);
+//    System.out.println("order is:" + value);
+//    Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId6() {
-    String value = this.idGenerator.generateOrderId(seq6);
-    Assert.assertTrue(value.length() == 15);
+//    String value = this.idGenerator.generateOrderId(seq6);
+//    Assert.assertTrue(value.length() == 15);
   }
 
   @Test
   public void generateOrderId7() {
-    String value = this.idGenerator.generateOrderId(seq7);
-    Assert.assertTrue(value.length() == 15);
+//
   }
 
   @Test
@@ -62,7 +72,19 @@ public class IdGeneratorTest {
     Assert.assertTrue(rs.getValue0() == 20190409);
     Assert.assertTrue(rs.getValue1() == 790045);
     Assert.assertTrue(rs.getValue2() == 1);
-   
+
+  }
+
+  @Test
+  public void testHex() {
+    val xx = Integer.parseInt("987", 64);
+    System.out.println(xx);
+
+  }
+
+  @Test
+  public void testId() {
+    System.out.println(Long.MAX_VALUE);
   }
 
   @Autowired

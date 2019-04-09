@@ -13,6 +13,6 @@ public interface IOrder {
 
   Result saveOrder(@Nonnull final Order order);
 
-  Long retrieveOrderId();
+  Integer retrieveOrderId();
 
 }

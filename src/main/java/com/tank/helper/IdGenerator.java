@@ -19,24 +19,28 @@ import java.util.stream.IntStream;
 public class IdGenerator {
 
 
-  public String generateOrderId(Integer seq) {
+  public String generateOrderId(@Nonnull final String storeCode) {
+    Preconditions.checkArgument(storeCode.length() <= 6);
     StringBuffer sb = new StringBuffer();
     String date = this.defaultYearMonthDay();
-    String store = this.storeCode(790045);
-    String orderId = this.orderSeq(seq);
+    //790045
+    String store = this.storeCode(storeCode);
+    Integer orderSeq = this.orderService.retrieveOrderId();
+    String orderId = this.orderSeq(orderSeq);
     StringJoiner joiner = new StringJoiner("");
     joiner.add(date);
     joiner.add(store);
     joiner.add(orderId);
-    return joiner.toString();
+    return joiner.toString().toUpperCase();
   }
 
   public Triplet<Integer, Integer, Integer> toRawOrderId(final String orderId) {
     Preconditions.checkArgument(orderId.trim().length() == 15, "invalidate orderId");
-    Integer date = Integer.parseInt(orderId.substring(0, 5), 32);
-    Integer storeID = Integer.parseInt(orderId.substring(5, 10).replace("*", ""), 32);
+    String tmpOrderID = orderId.toLowerCase();
+    Integer date = Integer.parseInt(tmpOrderID.substring(0, 5), 32);
+    Integer storeID = Integer.parseInt(tmpOrderID.substring(5, 10).replace("*", ""), 32);
     //orderId.substring(10, 15)
-    Integer seq = Integer.parseInt(removeLeftZeroChar(orderId.substring(10, 15)));
+    Integer seq = Integer.parseInt(removeLeftZeroChar(tmpOrderID.substring(10, 15)),32);
     return Triplet.with(date, storeID, seq);
   }
 
@@ -61,8 +65,22 @@ public class IdGenerator {
     return this.addLeftChart(Integer.toString(value, 32));
   }
 
-  private String storeCode(@Nonnull final Integer code) {
-    String value = Integer.toString(code, 32);
+  private String storeCode(@Nonnull final String code) {
+
+    int start = 0;
+    int size = code.length();
+    for (int i = 0; i < size; i++) {
+      char a = code.charAt(i);
+      if (a == '0') {
+        start++;
+      } else {
+        break;
+      }
+    }
+
+    int tmpCode = Integer.parseInt(code.substring(start));
+
+    String value = Integer.toString(tmpCode, 32);
     value = this.addLeftChart(value);
     return value;
   }
@@ -101,4 +119,5 @@ public class IdGenerator {
 
   @Autowired
   private DateHelper dateHelper;
+
 }

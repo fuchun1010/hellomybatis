@@ -29,8 +29,8 @@ public class OrderImpl implements IOrder {
   }
 
   @Override
-  public Long retrieveOrderId() {
-    return this.redisTemplate.opsForValue().increment("orderId", 1);
+  public Integer retrieveOrderId() {
+    return this.redisTemplate.opsForValue().increment("orderId", 1).intValue();
   }
 
 
