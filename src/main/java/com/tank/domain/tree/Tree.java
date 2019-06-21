@@ -36,6 +36,7 @@ public class Tree {
       }
     }
 
+
     return root;
   }
 
@@ -47,6 +48,16 @@ public class Tree {
     }
 
     return this.root;
+  }
+
+  public void updateName(final String id, String name) {
+
+    Item item = this.search(this.root, id);
+    if (item != null) {
+      item.setName(name);
+      System.out.println("update name success");
+    }
+
   }
 
   public Container addNode(final Item node) {
@@ -84,7 +95,7 @@ public class Tree {
 
     synchronized (root) {
       for (Item tmp : root.getNodes()) {
-        System.out.println("name===>"+tmp.getName());
+        System.out.println("name===>" + tmp.getName());
         if (tmp.getId().equalsIgnoreCase(id)) {
           root.getNodes().remove(tmp);
           return root;
@@ -109,7 +120,7 @@ public class Tree {
     synchronized (this.root) {
       for (Item tmp : root.getNodes()) {
         Preconditions.checkArgument(Objects.nonNull(tmp.getId()), "id not allowed null");
-        boolean isEqual = tmp.getId().equals(node.getPid());
+        boolean isEqual = tmp.getId().equals(node.getPid()) || tmp.getId().equalsIgnoreCase(node.getId());
         if (isEqual) {
           return tmp;
         } else {
@@ -127,6 +138,28 @@ public class Tree {
     }
 
 
+  }
+
+  private Item search(final Container root, String id) {
+    synchronized (this.root) {
+      for (Item tmp : root.getNodes()) {
+        Preconditions.checkArgument(Objects.nonNull(tmp.getId()), "id not allowed null");
+        boolean isEqual = tmp.getId().equals(id);
+        if (isEqual) {
+          return tmp;
+        } else {
+          if (tmp instanceof Container) {
+            Item rs = search((Container) tmp, id);
+            if (Objects.nonNull(rs)) {
+              return rs;
+            }
+          }
+
+        }
+      }
+
+      return null;
+    }
   }
 
   @Getter

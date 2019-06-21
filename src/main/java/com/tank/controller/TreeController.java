@@ -31,7 +31,7 @@ public class TreeController {
   @GetMapping(path = "/tree")
   public ResponseEntity<Map<String, List<Item>>> fetchTree() {
     synchronized (this.root) {
-      root = this.tree.getRoot();
+      this.root = this.tree.getRoot();
     }
     Map<String, List<Item>> tree = Maps.newHashMap();
     tree.put("root", root.getNodes());
@@ -54,6 +54,15 @@ public class TreeController {
     synchronized (this.root) {
       this.root = this.tree.removeNode(id);
     }
+    return ResponseEntity.ok().build();
+  }
+
+  @PutMapping(path = "/update/{id}/node/{name}/name")
+  public ResponseEntity update(@PathVariable("id") final String id, @PathVariable("name") final String name) {
+    synchronized (this.root) {
+      this.tree.updateName(id, name);
+    }
+    System.out.println(".....wakakak.....");
     return ResponseEntity.ok().build();
   }
 
