@@ -17,6 +17,9 @@ import java.util.Objects;
 @RequestMapping("/v1")
 public class TreeController {
 
+  private Tree tree = Tree.createInstance();
+  private Container root = new Container();
+
   @PostMapping(path = "/tree/created")
   public ResponseEntity<Map<String, Object>> createTree(@RequestBody final Map<String, List<Item>> body) {
     final List<Item> nodes = body.get("body");
@@ -65,10 +68,5 @@ public class TreeController {
     System.out.println(".....wakakak.....");
     return ResponseEntity.ok().build();
   }
-
-
-  private Tree tree = Tree.createInstance();
-
-  private Container root = new Container();
 
 }

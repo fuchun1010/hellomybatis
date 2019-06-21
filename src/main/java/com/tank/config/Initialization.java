@@ -23,6 +23,12 @@ import java.util.stream.Collectors;
 @Configuration
 public class Initialization {
 
+  @Value("${tagService.url}")
+  private String url;
+  @Autowired
+  private RestTemplate restTemplate;
+  private Tree tree = Tree.createInstance();
+
   @Bean
   public CommandLineRunner init() {
     return (args) -> {
@@ -68,12 +74,4 @@ public class Initialization {
     }).collect(Collectors.toList());
     return items;
   }
-
-  @Value("${tagService.url}")
-  private String url;
-
-  @Autowired
-  private RestTemplate restTemplate;
-
-  private Tree tree = Tree.createInstance();
 }

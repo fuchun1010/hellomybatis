@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class RecordRes {
-  
+
   private List<Record> records = new ArrayList<>();
 }

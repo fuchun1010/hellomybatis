@@ -11,6 +11,13 @@ import java.util.Objects;
  */
 public class Tree {
 
+  @Getter
+  private Container root = new Container();
+
+  private Tree() {
+
+  }
+
   public static Tree createInstance() {
     return Single.INSTANCE.fetchTreeInstance();
   }
@@ -39,7 +46,6 @@ public class Tree {
 
     return root;
   }
-
 
   public Container removeNode(final String id) {
 
@@ -75,20 +81,6 @@ public class Tree {
     }
 
     return this.root;
-  }
-
-  enum Single {
-    INSTANCE;
-
-    Single() {
-      this.tree = new Tree();
-    }
-
-    public Tree fetchTreeInstance() {
-      return this.tree;
-    }
-
-    private Tree tree;
   }
 
   private Item removeNode(Container root, String id) {
@@ -162,10 +154,17 @@ public class Tree {
     }
   }
 
-  @Getter
-  private Container root = new Container();
+  enum Single {
+    INSTANCE;
 
-  private Tree() {
+    private Tree tree;
 
+    Single() {
+      this.tree = new Tree();
+    }
+
+    public Tree fetchTreeInstance() {
+      return this.tree;
+    }
   }
 }

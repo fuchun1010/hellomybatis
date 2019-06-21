@@ -3,7 +3,6 @@ package com.tank.domain.tree;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +41,6 @@ public class Container extends Item {
   public int hashCode() {
     return Objects.hash(this.getId());
   }
-
 
 
 }

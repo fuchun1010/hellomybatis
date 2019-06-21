@@ -24,10 +24,10 @@ public class ItemDeserializer extends StdDeserializer<Item> {
   }
 
   @Override
-  public Item deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+  public Item deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
     JsonNode node = jsonParser.getCodec().readTree(jsonParser);
     String id = node.get("id").textValue();
-    String pid =  Objects.isNull(node.get("pid")) ? null : node.get("pid").textValue();
+    String pid = Objects.isNull(node.get("pid")) ? null : node.get("pid").textValue();
     String name = node.get("name").textValue();
     JsonNode tagIdNode = node.get("tagId");
     if (Objects.isNull(tagIdNode)) {
