@@ -44,6 +44,10 @@ public class Tree {
     }
 
 
+
+
+
+
     return root;
   }
 
@@ -87,16 +91,18 @@ public class Tree {
 
     synchronized (root) {
       for (Item tmp : root.getNodes()) {
-        System.out.println("name===>" + tmp.getName());
+        //||(tmp instanceof Node && ((Node) tmp).getTagId().equalsIgnoreCase(id))
         if (tmp.getId().equalsIgnoreCase(id)) {
+          System.out.println("相等则删除===>"+id);
           root.getNodes().remove(tmp);
           return root;
         } else {
           if (tmp instanceof Container) {
-            Item rs = this.removeNode((Container) tmp, id);
+            /*Item rs = this.removeNode((Container) tmp, id);
             if (rs != null) {
               return rs;
-            }
+            }*/
+            this.removeNode((Container) tmp, id);
           }
 
         }
@@ -104,7 +110,7 @@ public class Tree {
       }
     }
 
-    return null;
+    return root;
   }
 
   private Item search(final Container root, Item node) {
