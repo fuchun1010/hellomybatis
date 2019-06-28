@@ -69,6 +69,7 @@ public class Initialization {
         node.setId(id);
         node.setTagId(record.getTagId());
         node.setName(name);
+        node.setIsEnable(record.getIsEnable());
         return node;
       }
     }).collect(Collectors.toList());

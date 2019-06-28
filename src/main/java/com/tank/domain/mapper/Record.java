@@ -15,4 +15,6 @@ public class Record {
   private String tagId;
 
   private String name;
+
+  private Boolean isEnable;
 }

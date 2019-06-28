@@ -17,56 +17,57 @@ import java.util.Objects;
 @RequestMapping("/v1")
 public class TreeController {
 
-  private Tree tree = Tree.createInstance();
-  private Container root = new Container();
+    private Tree tree = Tree.createInstance();
+    private Container root = new Container();
 
-  @PostMapping(path = "/tree/created")
-  public ResponseEntity<Map<String, Object>> createTree(@RequestBody final Map<String, List<Item>> body) {
-    final List<Item> nodes = body.get("body");
-    synchronized (this.root) {
-      root = tree.toTree(nodes);
+    @PostMapping(path = "/tree/created")
+    public ResponseEntity<Map<String, Object>> createTree(@RequestBody final Map<String, List<Item>> body) {
+        final List<Item> nodes = body.get("body");
+        synchronized (this.root) {
+            root = tree.toTree(nodes);
+        }
+        final Map<String, Object> response = Maps.newHashMap();
+        response.put("root", root.getNodes());
+        return ResponseEntity.ok(response);
     }
-    final Map<String, Object> response = Maps.newHashMap();
-    response.put("root", root.getNodes());
-    return ResponseEntity.ok(response);
-  }
 
-  @GetMapping(path = "/tree")
-  public ResponseEntity<Map<String, List<Item>>> fetchTree() {
-    synchronized (this.root) {
-      this.root = this.tree.getRoot();
+    @GetMapping(path = "/tree")
+    public ResponseEntity<Map<String, List<Item>>> fetchTree() {
+        synchronized (this.root) {
+            this.root = this.tree.getRoot();
+        }
+        Map<String, List<Item>> tree = Maps.newHashMap();
+        tree.put("root", root.getNodes());
+        return ResponseEntity.ok(tree);
     }
-    Map<String, List<Item>> tree = Maps.newHashMap();
-    tree.put("root", root.getNodes());
-    return ResponseEntity.ok(tree);
-  }
 
-  @PostMapping(path = "/add/node")
-  public ResponseEntity<Map<String, List<Item>>> addNode(@RequestBody final Item item) {
-    Preconditions.checkArgument(Objects.nonNull(item), "item not allowed empty");
-    synchronized (this.root) {
-      this.root = this.tree.addNode(item);
+    @PostMapping(path = "/add/node")
+    public ResponseEntity<Map<String, List<Item>>> addNode(@RequestBody final Item item) {
+        Preconditions.checkArgument(Objects.nonNull(item), "item not allowed empty");
+        synchronized (this.root) {
+            this.root = this.tree.addNode(item);
+        }
+        Map<String, List<Item>> tree = Maps.newHashMap();
+        tree.put("root", root.getNodes());
+        return ResponseEntity.ok(tree);
     }
-    Map<String, List<Item>> tree = Maps.newHashMap();
-    tree.put("root", root.getNodes());
-    return ResponseEntity.ok(tree);
-  }
 
-  @DeleteMapping(path = "/delete/{id}/node")
-  public ResponseEntity removeNode(@PathVariable("id") final String id) {
-    synchronized (this.root) {
-      this.root = this.tree.removeNode(id);
+    @DeleteMapping(path = "/delete/{id}/node")
+    public ResponseEntity removeNode(@PathVariable("id") final String id) {
+        System.out.println("待删除的节点===>"+id);
+        synchronized (this.root) {
+            root = this.tree.removeNode(id);
+        }
+        return ResponseEntity.ok().build();
     }
-    return ResponseEntity.ok().build();
-  }
 
-  @PutMapping(path = "/update/{id}/node/{name}/name")
-  public ResponseEntity update(@PathVariable("id") final String id, @PathVariable("name") final String name) {
-    synchronized (this.root) {
-      this.tree.updateName(id, name);
+    @PutMapping(path = "/update/{id}/node/{name}/name")
+    public ResponseEntity update(@PathVariable("id") final String id, @PathVariable("name") final String name) {
+        synchronized (this.root) {
+            System.out.println(id+"======>"+name);
+            this.tree.updateName(id, name);
+        }
+        return ResponseEntity.ok().build();
     }
-    System.out.println(".....wakakak.....");
-    return ResponseEntity.ok().build();
-  }
 
 }

@@ -12,4 +12,6 @@ public class Node extends Item {
 
   private String tagId = "";
 
+  private Boolean isEnable = true;
+
 }
