@@ -2,13 +2,17 @@ package com.tank.controller;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
+import com.tank.config.Initialization;
 import com.tank.domain.tree.Container;
 import com.tank.domain.tree.Item;
 import com.tank.domain.tree.Tree;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,7 +38,7 @@ public class TreeController {
     @GetMapping(path = "/tree")
     public ResponseEntity<Map<String, List<Item>>> fetchTree() {
         synchronized (this.root) {
-            this.root = this.tree.getRoot();
+            this.root = tree.getRoot();
         }
         Map<String, List<Item>> tree = Maps.newHashMap();
         tree.put("root", root.getNodes());

@@ -2,6 +2,8 @@ package com.tank.domain.mapper;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author fuchun
  */

@@ -2,6 +2,7 @@ package com.tank.domain.tree;
 
 import com.google.common.base.Preconditions;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class Tree {
 
   @Getter
+  @Setter
   private Container root = new Container();
 
   private Tree() {
@@ -24,10 +26,11 @@ public class Tree {
 
   public Container toTree(final List<Item> nodes) {
 
-    synchronized (root) {
+    synchronized (this.root) {
 
       for (Item node : nodes) {
         if (root.isLeaf()) {
+
           root.add(node);
         } else {
           Item tmp = search(root, node);
@@ -37,17 +40,10 @@ public class Tree {
             if (tmp instanceof Container) {
               ((Container) tmp).add(node);
             }
-
           }
         }
       }
     }
-
-
-
-
-
-
     return root;
   }
 
@@ -118,6 +114,9 @@ public class Tree {
     synchronized (this.root) {
       for (Item tmp : root.getNodes()) {
         Preconditions.checkArgument(Objects.nonNull(tmp.getId()), "id not allowed null");
+        if(tmp.getId().equals("")) {
+
+        }
         boolean isEqual = tmp.getId().equals(node.getPid()) || tmp.getId().equalsIgnoreCase(node.getId());
         if (isEqual) {
           return tmp;
